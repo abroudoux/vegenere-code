@@ -1,6 +1,6 @@
 import unidecode
 
-def crypt_vigenere_code():
+def encrypt_vigenere_code():
     mess, key = "J'adore écouter la radio toute la journée", "musique"
     encrypted_mess = ""
     clean_mess = str.upper(unidecode.unidecode(mess))
@@ -62,5 +62,5 @@ def decrypt_vigenere_code():
     return decrypted_mess
 
 if __name__ == '__main__':
-    crypt_vigenere_code()
+    encrypt_vigenere_code()
     decrypt_vigenere_code()
