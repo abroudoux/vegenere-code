@@ -1,35 +1,66 @@
 import unidecode
 
 def crypt_vigenere_code():
-    mes, key = "Jadore écouter la radio toute la journée", "musique"
+    mess, key = "J'adore écouter la radio toute la journée", "musique"
     encrypted_mess = ""
-    clean_mes = str.upper(unidecode.unidecode(mes))
+    clean_mess = str.upper(unidecode.unidecode(mess))
     clean_key = str.upper(unidecode.unidecode(key))
     len_key = len(clean_key)
+    key_index = 0
 
-    for i in range(0, len(clean_mes)):
-        char_mes = clean_mes[i]
+    for i in range(len(clean_mess)):
+        char_mess = clean_mess[i]
 
-        if i > len_key - 1:
-            return
+        if char_mess.isalpha():
+            char_key = clean_key[key_index % len_key]
+            key_index += 1
 
-        if char_mes.isalpha():
-            index_mes = ord(char_mes) - ord('A')
-            char_key = clean_key[i]
+            index_mess = ord(char_mess) - ord('A')
             index_key = ord(char_key) - ord('A')
-            index_crypted = (index_mes + index_key)
+            index_crypted = (index_mess + index_key)
 
             if index_crypted > 25:
                 index_crypted -= 26
 
             char_crypted = chr(index_crypted + ord('A'))
             encrypted_mess += char_crypted
-            print("encrypted_mess: ", encrypted_mess)
         else:
-            encrypted_mess += char_mes
+            encrypted_mess += char_mess
+
+    return encrypted_mess
 
 def decrypt_vigenere_code():
-    return
+    crypted_mess, key = "V'UVWHY IOIMBUL PM LSLYI XAOLM BU NAOJVUY", "musique"
+    clean_crypted_mess = str.upper(unidecode.unidecode(crypted_mess))
+    clean_key = str.upper(unidecode.unidecode(key))
+    len_key = len(clean_key)
+    decrypted_mess = ""
+
+    key_index = 0
+
+    for i in range(len(clean_crypted_mess)):
+        char_crypted_mess = crypted_mess[i]
+
+        if char_crypted_mess.isalpha():
+            char_key = clean_key[key_index % len_key]
+            key_index += 1
+
+            index_crypted_mess = ord(char_crypted_mess) - ord('A')
+            index_key = ord(char_key) - ord('A')
+            index_decrypted = (index_crypted_mess - index_key)
+
+            if index_decrypted < 0:
+                index_decrypted += 26
+
+            char_decrypted = chr(index_decrypted + ord('A'))
+            decrypted_mess += char_decrypted
+        else:
+            decrypted_mess += char_crypted_mess
+
+    print("decrypted_mess: ", decrypted_mess)
+
+    return decrypted_mess
 
 if __name__ == '__main__':
     crypt_vigenere_code()
+    decrypt_vigenere_code()
