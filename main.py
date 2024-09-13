@@ -1,7 +1,11 @@
 import unidecode
 
+key_string = "musique"
+decrypted_message = "J'adore écouter la radio toute la journée"
+encrypted_message = "V'UVWHY IOIMBUL PM LSLYI XAOLM BU NAOJVUY"
+
 def encrypt_vigenere_code():
-    mess, key = "J'adore écouter la radio toute la journée", "musique"
+    mess, key = decrypted_message, key_string
     encrypted_mess = ""
     clean_mess = str.upper(unidecode.unidecode(mess))
     clean_key = str.upper(unidecode.unidecode(key))
@@ -30,7 +34,7 @@ def encrypt_vigenere_code():
     return encrypted_mess
 
 def decrypt_vigenere_code():
-    crypted_mess, key = "V'UVWHY IOIMBUL PM LSLYI XAOLM BU NAOJVUY", "musique"
+    crypted_mess, key = encrypted_message, key_string
     clean_crypted_mess = str.upper(unidecode.unidecode(crypted_mess))
     clean_key = str.upper(unidecode.unidecode(key))
     len_key = len(clean_key)
@@ -38,8 +42,8 @@ def decrypt_vigenere_code():
 
     key_index = 0
 
-    for i in range(len(clean_crypted_mess)):
-        char_crypted_mess = crypted_mess[i]
+    for index in range(len(clean_crypted_mess)):
+        char_crypted_mess = crypted_mess[index]
 
         if char_crypted_mess.isalpha():
             char_key = clean_key[key_index % len_key]
